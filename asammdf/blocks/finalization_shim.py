@@ -498,6 +498,7 @@ class FinalizationShim:
         # Supply with additional data from the original file if necessary.
         self._parent.seek(self._location)
         additional_data = self._parent.read(size)
+        self._location += size
 
         result += additional_data
 
