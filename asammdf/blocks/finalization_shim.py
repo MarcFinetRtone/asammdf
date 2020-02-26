@@ -514,6 +514,9 @@ class FinalizationShim:
             self._location = self._file_size - offset
         return self._parent.seek(offset, whence)
 
+    def size(self) -> int:
+        return self._file_size
+
     # Python overrides.
     def __iter__(self):
         return self

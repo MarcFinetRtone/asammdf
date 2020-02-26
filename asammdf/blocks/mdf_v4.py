@@ -2528,6 +2528,15 @@ class MDF4(object):
                             # can be a DataBlock
                             if id_string == block_type:
                                 size = block_len - 24
+                                if not size:
+                                    block_len = stream.size() - addr
+                                    size = block_len - 24
+                                    logger.warning(
+                                        "No size, assume unfinished: guessed size: {}".format(
+                                            size
+                                        )
+                                    )
+                                logger.warning("total_size: {}".format(total_size))
                                 if size:
                                     if total_size < size:
                                         block_limit = total_size
