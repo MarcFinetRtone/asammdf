@@ -478,7 +478,7 @@ class FinalizationShim:
                 match = block
                 break
 
-        result = None
+        result = b""
 
         if match is not None:
             # Replace returned data with data from the loaded block in the shim.
