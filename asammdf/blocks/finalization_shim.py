@@ -410,8 +410,13 @@ class FinalizationShim:
         supported_flags |= FinalizationFlags.CG_CA_CYCLE_COUNTERS
         supported_flags |= FinalizationFlags.DT_LENGTH
 
-        if finalization_flags & ~supported_flags:
-            raise MdfException("Unsupported finalization options detected")
+        unsupported_flags = finalization_flags & ~supported_flags
+        if unsupported_flags:
+            raise MdfException(
+                "Unsupported finalization options detected: 0x{:x}".format(
+                    unsupported_flags
+                )
+            )
 
         self._parent = parent
         self._blocks: {int, MdfBlock} = {}
